@@ -1,0 +1,231 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Verdana', sans-serif;
+    background: linear-gradient(to bottom, #f0f4f8, #c2e9fb);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.6;
+    opacity: 0; /* Start hidden for fade-in effect */
+    transition: opacity 0.5s ease; /* Smooth transition for opacity */
+    overflow-x: hidden; /* Hide horizontal scroll */
+}
+
+body.loaded {
+    opacity: 1; /* Fully visible when loaded */
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #ff4757;
+    color: white;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideInFromTop 1s ease;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadeIn 1s ease, glitter 2s infinite alternate;
+    position: relative;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Glitter Animation */
+@keyframes glitter {
+    0% {
+        color: #ff4757;
+    }
+    25% {
+        color: #ff6b81;
+    }
+    50% {
+        color: #ff4757;
+    }
+    75% {
+        color: #ff4757;
+    }
+    100% {
+        color: #ffa502;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Parallax Effect for Header */
+header {
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Recipe Section Styles */
+.recipe-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 40px 20px;
+    width: 80%;
+    margin: 20px auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Recipe Link Styles */
+.recipe-section a {
+    display: block;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    padding: 15px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px); /* Blur effect for content */
+}
+
+.recipe-section a::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0;
+    z-index: -1;
+}
+
+.recipe-section a:hover::before {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.recipe-section a:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    background-color: #ffe2e6; /* Light pink background on hover */
+}
+
+/* Image Styles */
+.recipe-section img {
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.recipe-section img:hover {
+    transform: scale(1.1) rotate(2deg); /* Added rotation */
+}
+
+/* Title Styles */
+h2 {
+    font-size: 1.8rem;
+    margin: 15px 0 0;
+    font-weight: bold;
+    color: #ff4757;
+    transition: color 0.3s;
+}
+
+.recipe-section a:hover h2 {
+    color: #ff6b81; /* Change color on hover */
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 40px;
+    font-size: 1rem;
+    color: #777;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    background-color: #f7f7f7;
+    border-top: 2px solid #ddd;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating Particle Effect */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url('https://i.imgur.com/wgFuWh9.png') repeat;
+    background-size: 100px 100px;
+    animation: floatParticles 50s linear infinite;
+    z-index: -1;
+}
+
+@keyframes floatParticles {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 1000px 2000px;
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    .recipe-section {
+        padding: 20px;
+    }
+
+    .recipe-section a {
+        padding: 10px;
+    }
+}
